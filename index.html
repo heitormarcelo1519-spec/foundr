@@ -69,7 +69,6 @@
 
     <div class="navbar-actions">
       <span class="nav-link" id="nav-feed">Explorar</span>
-      <span class="nav-link hidden" id="nav-dashboard">Painel</span>
 
       <!-- Guest -->
       <div id="guest-menu" style="display:flex;gap:8px;align-items:center;">
@@ -104,8 +103,9 @@
             <span class="dot"></span>
             Plataforma de Founder Matching #1 do Brasil
           </div>
-          <h1>Encontre seu próximo<br><span class="hero-grad">sócio!</span></h1>
-          <p>Conectamos idealizadores visionários com profissionais extraordinários.<br>Construa algo que importe.</p>
+          <h1>Encontre o co-piloto do seu<br><span class="hero-grad">foguete!</span></h1>
+          <p>Conectamos idealizadores visionários com profissionais extraordinários para traçar a melhor órbita para a
+            sua ideia.<br>Acione os motores, una forças e construa um projeto que alcance as estrelas.</p>
           <div class="hero-ctas">
             <button class="btn btn-primary btn-lg" id="hero-cta-register">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -151,7 +151,7 @@
           <div class="section-eyebrow">Como funciona</div>
           <h2 class="section-heading">Três passos para encontrar<br>o sócio certo</h2>
           <div class="how-grid">
-            <div class="how-card">
+            <div class="how-card" style="cursor:pointer" onclick="Auth.openAuth('register')">
               <div class="how-num">01</div>
               <div class="how-icon">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -163,7 +163,8 @@
               <h3>Crie seu perfil</h3>
               <p>Defina suas habilidades, sua área de atuação e o que você busca na plataforma.</p>
             </div>
-            <div class="how-card">
+            <div class="how-card" style="cursor:pointer"
+              onclick="document.getElementById('projects-section').scrollIntoView({behavior:'smooth'})">
               <div class="how-num">02</div>
               <div class="how-icon">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
