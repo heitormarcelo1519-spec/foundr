@@ -1940,7 +1940,7 @@ textarea.form-input {
 }
 
 .msg-group.mine .msg-bubble {
-  background: linear-gradient(135deg, var(--accent), #5d4fdb);
+  background: var(--accent); color: #000;
   color: #fff;
   border-bottom-right-radius: 4px;
   box-shadow: 0 4px 12px rgba(124, 109, 250, 0.3);
@@ -1989,7 +1989,7 @@ textarea.form-input {
 .chat-send {
   width: 38px;
   height: 38px;
-  background: linear-gradient(135deg, var(--accent), #9d8eff);
+  background: var(--text-secondary); color: #000;
   border-radius: 50%;
   border: none;
   display: flex;
@@ -2533,7 +2533,7 @@ body::after {
   left: 15%;
   right: 15%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), rgba(244, 114, 182, 0.8), var(--accent), transparent);
+  background: linear-gradient(90deg, transparent, #ffffff, transparent);
   animation: gradMove 4s linear infinite;
   background-size: 300%;
 }
@@ -2587,7 +2587,7 @@ body::after {
 
 /* Gradient text for section headings */
 .dash-header h2 {
-  background: linear-gradient(130deg, var(--text-primary) 0%, var(--accent-light) 100%);
+  color: #ffffff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2604,7 +2604,7 @@ body::after {
 
 /* Wizard step done with checkmark feel  */
 .wz-step.done {
-  background: linear-gradient(90deg, var(--accent), #34d399);
+  background: #ffffff; color: #000;
   box-shadow: 0 0 8px rgba(124, 109, 250, 0.5);
 }
 
@@ -3063,4 +3063,5 @@ body::after {
 .pitch-pending  { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: var(--r-md); padding: 10px 14px; font-size: 13px; }
 .pitch-accepted { background: rgba(52,211,153,0.1);  border: 1px solid rgba(52,211,153,0.3); border-radius: var(--r-md); padding: 10px 14px; font-size: 13px; }
 .pitch-rejected { background: rgba(239,68,68,0.1);   border: 1px solid rgba(239,68,68,0.3); border-radius: var(--r-md); padding: 10px 14px; font-size: 13px; }
+
 
