@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="background:#080b12">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description"
+    content="Foundr – Conecte sua ideia com os cofundadores certos. A plataforma de founder matching para startups.">
+  <title>Foundr – Encontre seu Sócio Ideal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    html,
+    body {
+      background: #080b12 !important;
+      background-color: #080b12 !important;
+      color: #eef0f8 !important;
+      margin: 0;
+      padding: 0;
+    }
+
+    .project-card {
+      background: #131720 !important;
+    }
+
+    .project-card:hover {
+      background: #181e2b !important;
+    }
+
+    .sidebar {
+      background: #0c0f18 !important;
+    }
+
+    .feed-hero,
+    .filter-bar,
+    .projects-container,
+    .page-main,
+    #view-feed,
+    #view-project-detail,
+    #view-dashboard,
+    #view-create-project {
+      background-color: transparent !important;
+    }
+  </style>
+</head>
+
+<body style="background:#080b12;color:#eef0f8;">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-logo" id="nav-logo">Foundr</div>
+
+    <div class="navbar-search">
+      <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.35-4.35" />
+      </svg>
+      <input type="text" id="search-input" placeholder="Buscar projetos, habilidades...">
+    </div>
+
+    <div class="navbar-spacer"></div>
+
+    <div class="navbar-actions">
+      <span class="nav-link" id="nav-feed">Explorar</span>
+      <span class="nav-link hidden" id="nav-dashboard">Painel</span>
+
+      <!-- Guest -->
+      <div id="guest-menu" style="display:flex;gap:8px;align-items:center;">
+        <button class="btn btn-ghost btn-sm" id="btn-open-login" data-mode="login">Entrar</button>
+        <button class="btn btn-primary btn-sm" id="btn-open-register" data-mode="register">Criar conta</button>
+      </div>
+
+      <!-- Logged in -->
+      <div id="user-menu" style="display:none;align-items:center;gap:10px;">
+        <button class="btn btn-ghost btn-sm" id="nav-dashboard-btn">Painel</button>
+        <div class="navbar-avatar-wrap" id="nav-avatar-wrap">
+          <div class="avatar avatar-base" id="nav-avatar" title="Meu Perfil">??</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="btn-logout">Sair</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="page-main">
+
+    <!-- ====================================================
+         FEED VIEW
+    ==================================================== -->
+    <section id="view-feed" class="view-section">
+
+      <!-- Hero -->
+      <div class="feed-hero" id="feed-hero">
+        <div class="hero-bg-canvas" id="hero-bg-canvas"></div>
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="dot"></span>
+            Plataforma de Founder Matching #1 do Brasil
+          </div>
+          <h1>Encontre seu próximo<br><span class="hero-grad">sócio!</span></h1>
+          <p>Conectamos idealizadores visionários com profissionais extraordinários.<br>Construa algo que importe.</p>
+          <div class="hero-ctas">
+            <button class="btn btn-primary btn-lg" id="hero-cta-register">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <line x1="19" y1="8" x2="19" y2="14" />
+                <line x1="22" y1="11" x2="16" y2="11" />
+              </svg>
+              Criar conta grátis
+            </button>
+            <button class="btn btn-secondary btn-lg" id="hero-cta-explore">
+              Explorar projetos
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+          <div class="hero-stats" id="hero-stats">
+            <div class="stat-item">
+              <div class="stat-value" id="stat-projects">0</div>
+              <div class="stat-label">Projetos</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-value" id="stat-founders">0</div>
+              <div class="stat-label">Fundadores</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-value" id="stat-matches">0</div>
+              <div class="stat-label">Conexões</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How it works -->
+      <section class="how-section">
+        <div class="how-inner">
+          <div class="section-eyebrow">Como funciona</div>
+          <h2 class="section-heading">Três passos para encontrar<br>o sócio certo</h2>
+          <div class="how-grid">
+            <div class="how-card">
+              <div class="how-num">01</div>
+              <div class="how-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </div>
+              <h3>Crie seu perfil</h3>
+              <p>Defina suas habilidades, sua área de atuação e o que você busca na plataforma.</p>
+            </div>
+            <div class="how-card">
+              <div class="how-num">02</div>
+              <div class="how-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+              </div>
+              <h3>Explore projetos</h3>
+              <p>Navegue por projetos reais em diferentes estágios de desenvolvimento e áreas de negócio.</p>
+            </div>
+            <div class="how-card">
+              <div class="how-num">03</div>
+              <div class="how-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <h3>Envie seu pitch</h3>
+              <p>Convença o fundador de que você é o sócio certo e inicie uma conversa privada.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categories -->
+      <section class="cat-showcase">
+        <div class="cat-showcase-inner">
+          <div class="section-eyebrow">Áreas</div>
+          <h2 class="section-heading">Explore por especialidade</h2>
+          <div class="cat-showcase-grid" id="cat-showcase-grid"></div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section class="projects-section" id="projects-section">
+        <div class="projects-container">
+          <div class="section-title-row">
+            <div>
+              <div class="section-eyebrow" style="margin-bottom:6px">Projetos</div>
+              <span class="section-label">Em destaque agora</span>
+            </div>
+            <span class="project-count" id="project-count-label"></span>
+          </div>
+          <div class="filter-bar">
+            <span class="filter-label">Filtrar</span>
+            <div id="filter-bar-chips" style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;"></div>
+          </div>
+          <div class="projects-grid" id="projects-grid"></div>
+        </div>
+      </section>
+
+      <!-- CTA Banner -->
+      <section class="cta-banner">
+        <div class="cta-banner-inner">
+          <h2>Pronto para construir algo incrível?</h2>
+          <p>Junte-se a centenas de fundadores que já encontraram seus sócios no Foundr.</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <button class="btn btn-primary btn-lg" id="cta-bottom-register">Criar conta grátis</button>
+            <button class="btn btn-secondary btn-lg" id="cta-bottom-post">Publicar meu projeto</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div class="footer-logo">Foundr</div>
+          <p class="footer-desc">A plataforma de founder matching para quem quer construir o futuro.</p>
+          <div class="footer-links">
+            <span>Sobre</span><span>Blog</span><span>Termos</span><span>Privacidade</span>
+          </div>
+          <div class="footer-copy">© 2025 Foundr. Todos os direitos reservados.</div>
+        </div>
+      </footer>
+
+    </section>
+
+    <!-- PROJECT DETAIL VIEW -->
+    <section id="view-project-detail" class="view-section" style="display:none;">
+      <div id="project-detail-content"></div>
+    </section>
+
+    <!-- DASHBOARD VIEW -->
+    <section id="view-dashboard" class="view-section" style="display:none;">
+      <div class="dashboard-layout">
+        <aside class="sidebar">
+          <div class="sidebar-profile">
+            <div class="avatar-photo-wrap" id="sidebar-avatar-wrap">
+              <div class="avatar avatar-lg" id="sidebar-avatar">??</div>
+              <label class="avatar-upload-btn" title="Alterar foto" id="sidebar-photo-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                  <circle cx="12" cy="13" r="4" />
+                </svg>
+                <input type="file" id="sidebar-photo-input" accept="image/*" style="display:none">
+              </label>
+            </div>
+            <div class="sidebar-name" id="sidebar-name">–</div>
+            <div class="sidebar-role" id="sidebar-tags">–</div>
+            <span class="sidebar-purpose-badge" id="sidebar-purpose">–</span>
+          </div>
+
+          <button class="sidebar-nav-item active" data-section="my-projects">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+              <polyline points="14 2 14 8 20 8" />
+            </svg>
+            Meus Projetos
+          </button>
+          <button class="sidebar-nav-item" data-section="pitches">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22 6 12 13 2 6" />
+            </svg>
+            Pitches Recebidos
+            <span class="nav-badge hidden" id="pitches-badge">0</span>
+          </button>
+          <button class="sidebar-nav-item" data-section="sent-pitches">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+            Meus Pitches
+          </button>
+          <button class="sidebar-nav-item" data-section="connections">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            Conexoes e Chats
+            <span class="nav-badge hidden" id="chats-badge">0</span>
+          </button>
+
+          <hr class="divider" style="margin-top:auto">
+          <button class="sidebar-nav-item" onclick="App.navigate('feed')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+            Voltar ao Feed
+          </button>
+        </aside>
+
+        <div class="dash-content">
+          <!-- My Projects -->
+          <div class="dash-section active" id="section-my-projects">
+            <div class="dash-header">
+              <h2>Meus Projetos</h2>
+              <button class="btn btn-primary btn-sm" id="btn-new-project" onclick="App.navigate('create-project')">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+                Novo Projeto
+              </button>
+            </div>
+            <div class="limit-warn hidden" id="project-limit-warn">
+              Conta gratuita: apenas <strong>1 projeto ativo</strong> por vez. Finalize o atual para criar um novo.
+            </div>
+            <div id="my-projects-list"></div>
+          </div>
+
+          <!-- Pitches Received -->
+          <div class="dash-section" id="section-pitches">
+            <div class="dash-header">
+              <h2>Pitches Recebidos</h2>
+            </div>
+            <p class="dash-sub">Candidatos interessados em entrar nos seus projetos.</p>
+            <div id="pitches-list"></div>
+          </div>
+
+          <!-- Sent Pitches -->
+          <div class="dash-section" id="section-sent-pitches">
+            <div class="dash-header">
+              <h2>Meus Pitches Enviados</h2>
+            </div>
+            <p class="dash-sub">Acompanhe o status dos projetos em que você candidatou.</p>
+            <div id="sent-pitches-list"></div>
+          </div>
+
+          <!-- Connections -->
+          <div class="dash-section" id="section-connections">
+            <div class="dash-header">
+              <h2>Conexoes e Chats</h2>
+            </div>
+            <div id="connections-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREATE PROJECT VIEW -->
+    <section id="view-create-project" class="view-section" style="display:none;">
+      <div class="form-container">
+        <button class="back-btn" onclick="App.navigate('feed')" style="margin-bottom:28px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+          Cancelar
+        </button>
+        <h1>Criar novo projeto</h1>
+        <p class="sub">Descreva sua ideia e atraia os sócios ideais.</p>
+
+        <!-- Cover image upload -->
+        <div class="form-group">
+          <label class="form-label">Imagem de capa do projeto</label>
+          <div class="cover-upload-area" id="cover-upload-area">
+            <div class="cover-upload-placeholder" id="cover-upload-placeholder">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                <circle cx="12" cy="13" r="4" />
+              </svg>
+              <span>Clique para adicionar uma imagem de capa</span>
+              <small>PNG, JPG até 2MB — aparece como fundo do card</small>
+            </div>
+            <img id="cover-preview" src="" alt=""
+              style="display:none;width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+            <label class="cover-upload-trigger" for="cover-image-input"></label>
+            <input type="file" id="cover-image-input" accept="image/*" style="display:none">
+            <button class="cover-remove-btn hidden" id="cover-remove-btn" type="button">Remover imagem</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="cp-title">Nome do Projeto <span class="req">*</span></label>
+          <input type="text" id="cp-title" class="form-input"
+            placeholder="Ex: EduFlow – Plataforma de cursos com IA adaptativa" maxlength="100">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="cp-summary">Proposta de Valor <span class="req">*</span></label>
+          <textarea id="cp-summary" class="form-input"
+            placeholder="Qual problema você resolve? Para quem? Como se diferencia?" rows="5"
+            maxlength="1000"></textarea>
+          <div class="form-hint">Seja objetivo. Uma boa descrição atrai os candidatos certos.</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="cp-stage">Estagio Atual</label>
+          <select id="cp-stage" class="form-input">
+            <option value="Ideação">Ideação</option>
+            <option value="Pesquisa e Validação">Pesquisa e Validação</option>
+            <option value="Prototipo">Prototipo</option>
+            <option value="MVP em construção">MVP em construção</option>
+            <option value="MVP Pronto">MVP Pronto</option>
+            <option value="Captando investimento">Captando investimento</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="cp-category">Categoria Principal <span class="req">*</span></label>
+          <select id="cp-category" class="form-input" onchange="CreateProject.renderSkillOptions()">
+            <option value="">Selecione...</option>
+            <option value="tech">Tecnologia</option>
+            <option value="design">Design e Produto</option>
+            <option value="business">Negocios e Vendas</option>
+            <option value="ops">Operações</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Competencias que voce busca <span class="req">*</span></label>
+          <p class="form-hint" style="margin-bottom:12px">Selecione a categoria acima e escolha as habilidades do sócio
+            ideal.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;" id="cp-skills-grid">
+            <span style="color:var(--text-muted);font-size:13px">Selecione uma categoria primeiro</span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg" id="btn-create-submit" style="width:100%;margin-top:16px;">
+          Publicar Projeto
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: AUTH -->
+  <div class="modal-overlay" id="auth-overlay">
+    <div class="modal">
+      <button class="modal-close" id="auth-modal-close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+
+      <div class="modal-header">
+        <h2>Bem-vindo ao <span
+            style="background:linear-gradient(130deg,#7c6dfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Foundr</span>
+        </h2>
+        <p>Onde encontros extraordinários começam.</p>
+      </div>
+
+      <div class="auth-tabs" style="margin:0 28px 16px;">
+        <div class="auth-tab active" data-mode="login">Entrar</div>
+        <div class="auth-tab" data-mode="register">Criar conta</div>
+      </div>
+
+      <!-- LOGIN -->
+      <div id="login-form" class="modal-body">
+        <div class="form-group">
+          <label class="form-label">E-mail</label>
+          <input type="email" id="login-email" class="form-input" placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Primeiro Nome</label>
+          <input type="text" id="login-name" class="form-input" placeholder="Como você se chama?">
+        </div>
+        <button class="btn btn-primary btn-lg" id="btn-login-submit" style="width:100%">Entrar</button>
+        <p style="text-align:center;font-size:12.5px;color:var(--text-muted);margin-top:14px;">
+          Não tem conta? <span style="color:var(--accent-light);cursor:pointer;font-weight:600;"
+            onclick="document.querySelector('[data-mode=register]').click()">Cadastre-se gratis</span>
+        </p>
+        <hr class="divider">
+        <p style="font-size:12px;color:var(--text-muted);text-align:center;line-height:1.6;">
+          <strong style="color:var(--text-secondary)">Demo rapido:</strong><br>
+          E-mail: <code style="color:var(--accent-light)">lucas@demo.com</code> · Nome: <code
+            style="color:var(--accent-light)">Lucas</code>
+        </p>
+      </div>
+
+      <!-- REGISTER WIZARD -->
+      <div id="register-wizard" class="hidden">
+        <div class="wizard-steps" style="padding:8px 28px 0;">
+          <div class="wz-step active" id="wizard-dot-1"></div>
+          <div class="wz-step" id="wizard-dot-2"></div>
+          <div class="wz-step" id="wizard-dot-3"></div>
+          <div class="wz-step" id="wizard-dot-4"></div>
+        </div>
+
+        <!-- Step 1: Identity -->
+        <div id="reg-step-1" class="modal-body">
+          <p class="step-label">ETAPA 1 DE 4</p>
+          <h3 class="step-title">Quem e voce?</h3>
+          <div class="form-group">
+            <label class="form-label">Foto de perfil</label>
+            <div class="profile-photo-upload" id="reg-photo-area">
+              <div class="profile-photo-preview" id="reg-photo-preview">
+                <div class="avatar avatar-xl" id="reg-avatar-preview">?</div>
+                <img id="reg-photo-img" src="" alt=""
+                  style="display:none;width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--accent);">
+              </div>
+              <label class="btn btn-secondary btn-sm" for="reg-photo-input" style="cursor:pointer;margin-left:16px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                  <circle cx="12" cy="13" r="4" />
+                </svg>
+                Adicionar foto
+              </label>
+              <input type="file" id="reg-photo-input" accept="image/*" style="display:none">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nome <span class="req">*</span></label>
+            <input type="text" id="reg-name" class="form-input" placeholder="Seu primeiro nome">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Sobrenome <span class="req">*</span></label>
+            <input type="text" id="reg-surname" class="form-input" placeholder="Seu sobrenome">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Biografia <span class="req">*</span></label>
+            <textarea id="reg-bio" class="form-input"
+              placeholder="Sua experiência, o que você já construiu, o que busca aqui..." rows="3"
+              maxlength="300"></textarea>
+          </div>
+          <button class="btn btn-primary btn-lg" id="btn-reg-step1" style="width:100%">Proximo</button>
+        </div>
+
+        <!-- Step 2: Category + Tags -->
+        <div id="reg-step-2" class="modal-body hidden">
+          <p class="step-label">ETAPA 2 DE 4</p>
+          <h3 class="step-title">Sua especialidade</h3>
+          <label class="form-label" style="margin-bottom:10px">Area principal</label>
+          <div class="cat-grid">
+            <div class="cat-card" data-cat="tech" onclick="Auth.selectCat('tech')">
+              <span class="cat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
+              </span>
+              <div class="cat-name">Tecnologia</div>
+              <div class="cat-desc">Dev, IA, Data, Cloud</div>
+            </div>
+            <div class="cat-card" data-cat="design" onclick="Auth.selectCat('design')">
+              <span class="cat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                  <line x1="9" y1="9" x2="9.01" y2="9" />
+                  <line x1="15" y1="9" x2="15.01" y2="9" />
+                </svg>
+              </span>
+              <div class="cat-name">Design e Produto</div>
+              <div class="cat-desc">UX, UI, PM, Research</div>
+            </div>
+            <div class="cat-card" data-cat="business" onclick="Auth.selectCat('business')">
+              <span class="cat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="20" x2="12" y2="10" />
+                  <line x1="18" y1="20" x2="18" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="16" />
+                </svg>
+              </span>
+              <div class="cat-name">Negocios e Vendas</div>
+              <div class="cat-desc">Growth, Marketing, Vendas</div>
+            </div>
+            <div class="cat-card" data-cat="ops" onclick="Auth.selectCat('ops')">
+              <span class="cat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
+                </svg>
+              </span>
+              <div class="cat-name">Operações</div>
+              <div class="cat-desc">COO, Processos, Finanças</div>
+            </div>
+          </div>
+          <div id="reg-tags-section" class="hidden" style="margin-top:16px;">
+            <label class="form-label" style="margin-bottom:10px">Suas tags <span class="req">*</span></label>
+            <div class="tags-cloud" id="reg-tags-cloud"></div>
+          </div>
+          <button class="btn btn-primary btn-lg" id="btn-reg-step2" style="width:100%;margin-top:16px">Proximo</button>
+        </div>
+
+        <!-- Step 3: E-mail -->
+        <div id="reg-step-3" class="modal-body hidden">
+          <p class="step-label">ETAPA 3 DE 4</p>
+          <h3 class="step-title">Seu e-mail</h3>
+          <div class="form-group">
+            <label class="form-label">E-mail <span class="req">*</span></label>
+            <input type="email" id="reg-email" class="form-input" placeholder="seu@email.com">
+          </div>
+          <button class="btn btn-primary btn-lg" id="btn-reg-step3" style="width:100%">Proximo</button>
+        </div>
+
+        <!-- Step 4: Purpose -->
+        <div id="reg-step-4" class="modal-body hidden">
+          <p class="step-label">ETAPA 4 DE 4</p>
+          <h3 class="step-title">Qual e seu objetivo?</h3>
+          <div class="purpose-grid">
+            <div class="purpose-card" data-purpose="offer">
+              <span class="purpose-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                </svg>
+              </span>
+              <h3>Ofereço uma ideia</h3>
+              <p>Tenho um projeto e busco sócios para construí-lo comigo.</p>
+            </div>
+            <div class="purpose-card" data-purpose="find">
+              <span class="purpose-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+              </span>
+              <h3>Busco um projeto</h3>
+              <p>Quero unir minhas habilidades a algo que vale a pena construir.</p>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-lg" id="btn-reg-step4" style="width:100%;margin-top:22px">
+            Entrar no Foundr
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CHAT -->
+  <div class="modal-overlay" id="chat-overlay">
+    <div class="modal modal-wide" style="padding:0;display:flex;flex-direction:column;max-height:92vh;">
+      <button class="modal-close" id="chat-modal-close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <div class="chat-header">
+        <div class="avatar avatar-sm">C</div>
+        <div class="chat-header-info">
+          <h3 id="chat-project-title">Projeto</h3>
+          <p>Chat com <span id="chat-partner-name">Socio</span></p>
+        </div>
+        <div class="online-dot" title="Online"></div>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input-row">
+        <input type="text" class="chat-in" id="chat-input" placeholder="Escreva uma mensagem..." maxlength="500">
+        <button class="chat-send" id="chat-send-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13" />
+            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
