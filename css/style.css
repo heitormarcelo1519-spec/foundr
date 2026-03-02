@@ -3,28 +3,28 @@
    ============================================================ */
 :root {
   /* Base */
-  --bg-base: #080b12;
-  --bg-surface: #0f1219;
-  --bg-card: #131720;
-  --bg-card-hover: #181e2b;
-  --bg-elevated: #1c2233;
-  --bg-input: #161b27;
-  --bg-modal: #0f1219;
+  --bg-base: #000000;
+  --bg-surface: #0a0a0a;
+  --bg-card: #111111;
+  --bg-card-hover: #1a1a1a;
+  --bg-elevated: #222222;
+  --bg-input: #111111;
+  --bg-modal: #0a0a0a;
 
   /* Accent */
-  --accent: #7c6dfa;
-  --accent-light: #a597ff;
-  --accent-dim: rgba(124, 109, 250, 0.15);
-  --accent-glow: rgba(124, 109, 250, 0.25);
-  --accent-glow-lg: rgba(124, 109, 250, 0.12);
-  --secondary: #f472b6;
-  --secondary-dim: rgba(244, 114, 182, 0.15);
+  --accent: #ffffff;
+  --accent-light: #eeeeee;
+  --accent-dim: rgba(255, 255, 255, 0.15);
+  --accent-glow: rgba(255, 255, 255, 0.25);
+  --accent-glow-lg: rgba(255, 255, 255, 0.12);
+  --secondary: #aaaaaa;
+  --secondary-dim: rgba(255, 255, 255, 0.15);
 
   /* Text */
-  --text-primary: #eef0f8;
-  --text-secondary: #8891b0;
-  --text-muted: #454d6a;
-  --text-inverted: #080b12;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #888888;
+  --text-inverted: #000000;
 
   /* Status */
   --success: #34d399;
@@ -39,7 +39,7 @@
   /* Borders */
   --border: rgba(255, 255, 255, 0.055);
   --border-md: rgba(255, 255, 255, 0.09);
-  --border-accent: rgba(124, 109, 250, 0.4);
+  --border-accent: rgba(255, 255, 255, 0.4);
 
   /* Radius */
   --r-sm: 8px;
@@ -52,8 +52,8 @@
   --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
-  --shadow-accent: 0 8px 40px rgba(124, 109, 250, 0.2);
-  --shadow-glow: 0 0 0 1px var(--border-accent), 0 8px 40px rgba(124, 109, 250, 0.2);
+  --shadow-accent: 0 8px 40px rgba(255, 255, 255, 0.1);
+  --shadow-glow: 0 0 0 1px var(--border-accent), 0 8px 40px rgba(255, 255, 255, 0.1);
 
   /* Transitions */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -77,13 +77,13 @@
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
-  background: #080b12;
+  background: #000000;
 }
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background: #080b12;
-  background-color: #080b12;
+  background: #000000;
+  background-color: #000000;
   color: #eef0f8;
   min-height: 100vh;
   line-height: 1.6;
@@ -140,9 +140,9 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(124, 109, 250, 0.14) 0%, #080b12 60%),
-    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(244, 114, 182, 0.10) 0%, #080b12 60%);
-  background-color: #080b12;
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(124, 109, 250, 0.14) 0%, #000000 60%),
+    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(244, 114, 182, 0.10) 0%, #000000 60%);
+  background-color: #000000;
   pointer-events: none;
   z-index: 0;
 }
@@ -2389,15 +2389,15 @@ body::after {
 /* Enhanced avatar gradient ring pulse on hover */
 @keyframes ringPulse {
   0% {
-    box-shadow: 0 0 0 2px #131720, 0 0 0 4px rgba(124, 109, 250, 0.5);
+    box-shadow: 0 0 0 2px #111111, 0 0 0 4px rgba(124, 109, 250, 0.5);
   }
 
   50% {
-    box-shadow: 0 0 0 2px #131720, 0 0 0 6px rgba(124, 109, 250, 0.8), 0 0 16px rgba(124, 109, 250, 0.4);
+    box-shadow: 0 0 0 2px #111111, 0 0 0 6px rgba(124, 109, 250, 0.8), 0 0 16px rgba(124, 109, 250, 0.4);
   }
 
   100% {
-    box-shadow: 0 0 0 2px #131720, 0 0 0 4px rgba(124, 109, 250, 0.5);
+    box-shadow: 0 0 0 2px #111111, 0 0 0 4px rgba(124, 109, 250, 0.5);
   }
 }
 
@@ -2783,7 +2783,7 @@ body::after {
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 .how-card:hover {
-  border-color: rgba(124,109,250,0.4);
+  border-color: rgba(255,255,255,0.4);
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(0,0,0,0.3);
 }
@@ -2793,7 +2793,7 @@ body::after {
 }
 .how-icon {
   width: 48px; height: 48px; border-radius: 14px;
-  background: rgba(124,109,250,0.12); border: 1px solid rgba(124,109,250,0.2);
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 18px;
   color: var(--accent-light);
@@ -2848,7 +2848,7 @@ body::after {
 
 /* -- CTA Banner -- */
 .cta-banner {
-  background: linear-gradient(135deg, rgba(124,109,250,0.12) 0%, rgba(244,114,182,0.08) 100%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(244,114,182,0.08) 100%);
   border-top: 1px solid rgba(124,109,250,0.15);
   border-bottom: 1px solid rgba(124,109,250,0.15);
   padding: 80px 24px;
@@ -2888,9 +2888,9 @@ body::after {
   position: absolute; inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(8,11,18,0.55) 0%,
-    rgba(8,11,18,0.78) 55%,
-    rgba(8,11,18,0.95) 100%
+    rgba(0,0,0,0.55) 0%,
+    rgba(0,0,0,0.78) 55%,
+    rgba(0,0,0,0.95) 100%
   );
   z-index: 0; border-radius: inherit;
 }
@@ -2902,9 +2902,9 @@ body::after {
   position: absolute; inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(8,11,18,0.35) 0%,
-    rgba(8,11,18,0.82) 70%,
-    rgba(8,11,18,0.97) 100%
+    rgba(0,0,0,0.35) 0%,
+    rgba(0,0,0,0.82) 70%,
+    rgba(0,0,0,0.97) 100%
   );
   z-index: 0;
 }
@@ -2920,7 +2920,7 @@ body::after {
   transition: border-color 0.2s, background 0.2s;
 }
 .cover-upload-area:hover { border-color: var(--accent); background: var(--bg-card-hover); }
-.cover-upload-area.has-image { border-style: solid; border-color: rgba(124,109,250,0.4); }
+.cover-upload-area.has-image { border-style: solid; border-color: rgba(255,255,255,0.4); }
 .cover-upload-placeholder {
   position: absolute; inset: 0;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -2934,7 +2934,7 @@ body::after {
 }
 .cover-remove-btn {
   position: absolute; top: 10px; right: 10px; z-index: 3;
-  background: rgba(8,11,18,0.85); color: #fff;
+  background: rgba(0,0,0,0.85); color: #fff;
   border: 1px solid rgba(255,255,255,0.15); border-radius: var(--r-md);
   padding: 5px 10px; font-size: 12px; cursor: pointer;
   backdrop-filter: blur(6px);
@@ -3006,7 +3006,7 @@ body::after {
 /* -- LOCK CARD (detail) -- */
 .lock-icon-wrap {
   width: 56px; height: 56px; border-radius: 50%;
-  background: rgba(124,109,250,0.12); border: 1px solid rgba(124,109,250,0.2);
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
   display: flex; align-items: center; justify-content: center;
   color: var(--accent-light); margin: 0 auto 16px;
 }
@@ -3060,6 +3060,7 @@ body::after {
 .req { color: var(--accent-light); }
 
 /* -- PITCH STATUS -- */
-.pitch-pending  { background: rgba(124,109,250,0.1); border: 1px solid rgba(124,109,250,0.3); border-radius: var(--r-md); padding: 10px 14px; font-size: 13px; }
+.pitch-pending  { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: var(--r-md); padding: 10px 14px; font-size: 13px; }
 .pitch-accepted { background: rgba(52,211,153,0.1);  border: 1px solid rgba(52,211,153,0.3); border-radius: var(--r-md); padding: 10px 14px; font-size: 13px; }
 .pitch-rejected { background: rgba(239,68,68,0.1);   border: 1px solid rgba(239,68,68,0.3); border-radius: var(--r-md); padding: 10px 14px; font-size: 13px; }
+
