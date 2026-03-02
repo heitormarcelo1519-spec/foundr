@@ -186,7 +186,11 @@ const App = (() => {
         document.getElementById('nav-dashboard-btn')?.addEventListener('click', () => navigate('dashboard'));
         document.getElementById('btn-logout')?.addEventListener('click', logout);
         document.getElementById('hero-cta-explore')?.addEventListener('click', () => {
-            document.getElementById('projects-section')?.scrollIntoView({ behavior: 'smooth' });
+            const el = document.getElementById('projects-section');
+            if (el) {
+                const y = el.getBoundingClientRect().top + window.scrollY - 60;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
         });
         document.getElementById('cta-bottom-register')?.addEventListener('click', () => Auth.openAuth('register'));
         document.getElementById('cta-bottom-post')?.addEventListener('click', () => {

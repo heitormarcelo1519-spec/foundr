@@ -167,7 +167,6 @@
           <h2 class="section-heading">Três passos para encontrar<br>o sócio certo</h2>
           <div class="how-grid">
             <div class="how-card" style="cursor:pointer" onclick="Auth.openAuth('register')">
-              <div class="how-num">01</div>
               <div class="how-icon">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                   stroke-linecap="round" stroke-linejoin="round">
@@ -179,8 +178,7 @@
               <p>Defina suas habilidades, sua área de atuação e o que você busca na plataforma.</p>
             </div>
             <div class="how-card" style="cursor:pointer"
-              onclick="document.getElementById('projects-section').scrollIntoView({behavior:'smooth'})">
-              <div class="how-num">02</div>
+              onclick="const e=document.getElementById('projects-section'); window.scrollTo({top: e.getBoundingClientRect().top + window.scrollY - 60, behavior: 'smooth'});">
               <div class="how-icon">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                   stroke-linecap="round" stroke-linejoin="round">
@@ -192,7 +190,6 @@
               <p>Navegue por projetos reais em diferentes estágios de desenvolvimento e áreas de negócio.</p>
             </div>
             <div class="how-card">
-              <div class="how-num">03</div>
               <div class="how-icon">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                   stroke-linecap="round" stroke-linejoin="round">
