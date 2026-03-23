@@ -1,5 +1,5 @@
 /* ============================================================
-   FOUNDR — PREMIUM DARK DESIGN SYSTEM v2
+   FOUNDR â€” PREMIUM DARK DESIGN SYSTEM v2
    ============================================================ */
 :root {
   /* Base */
@@ -511,7 +511,7 @@ body::before {
 }
 
 /* ============================================================
-   FEED — HERO
+   FEED â€” HERO
    ============================================================ */
 .feed-hero {
   position: relative;
@@ -895,7 +895,7 @@ body::before {
 .project-card:hover .card-arrow {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: #000;
   transform: translateX(2px);
 }
 
@@ -2520,7 +2520,7 @@ body::after {
   background: var(--accent);
 }
 
-/* Project detail hero — glowing border top */
+/* Project detail hero â€” glowing border top */
 .detail-hero {
   position: relative;
   overflow: hidden;
@@ -2755,7 +2755,7 @@ body::after {
    RESPONSIVE (continued)
    ============================================================ */
 /* ============================================================
-   HOMEPAGE SECTIONS v3 � How It Works + Cat Showcase + CTA + Footer
+   HOMEPAGE SECTIONS v3 — How It Works + Cat Showcase + CTA + Footer
    ============================================================ */
 
 /* Section base */

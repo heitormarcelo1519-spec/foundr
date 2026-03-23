@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server'
 export async function GET(request: Request) {
     const requestUrl = new URL(request.url)
     const code = requestUrl.searchParams.get('code')
+    const next = requestUrl.searchParams.get('next') ?? '/feed'
     const origin = requestUrl.origin
 
     if (code) {
@@ -11,6 +12,7 @@ export async function GET(request: Request) {
         await supabase.auth.exchangeCodeForSession(code)
     }
 
-    // After OAuth, redirect to feed (middleware handles onboarding redirect)
-    return NextResponse.redirect(`${origin}/feed`)
+    // If `next` is provided (e.g., /reset-password), redirect there.
+    // Otherwise, redirect to /feed (middleware handles onboarding check).
+    return NextResponse.redirect(`${origin}${next}`)
 }

@@ -293,11 +293,19 @@ const App = (() => {
         const userMenu = document.getElementById('user-menu');
         const navDash = document.getElementById('nav-dashboard');
 
+        // Homepage specific actions (hero)
+        const heroRegBtn = document.getElementById('hero-cta-register');
+        const ctaBottomRegBtn = document.getElementById('cta-bottom-register');
+
         if (me) {
             if (guestMenu) guestMenu.style.display = 'none';
             if (navDash) navDash.classList.remove('hidden');
+            if (heroRegBtn) heroRegBtn.style.display = 'none';
+            if (ctaBottomRegBtn) ctaBottomRegBtn.style.display = 'none';
+
             if (userMenu) {
                 userMenu.style.display = 'flex';
+                // user avatar sync code inside onAuthChange
                 const navAv = document.getElementById('nav-avatar');
                 if (navAv) {
                     if (me.photoURL) {
@@ -310,6 +318,9 @@ const App = (() => {
         } else {
             if (guestMenu) guestMenu.style.display = 'flex';
             if (navDash) navDash.classList.add('hidden');
+            if (heroRegBtn) heroRegBtn.style.display = 'inline-flex';
+            if (ctaBottomRegBtn) ctaBottomRegBtn.style.display = 'inline-flex';
+
             if (userMenu) userMenu.style.display = 'none';
         }
     }
