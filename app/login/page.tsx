@@ -5,18 +5,21 @@ import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Eye, EyeOff, Mail, KeyRound, User, Loader2, AlertCircle } from 'lucide-react'
+import { Eye, EyeOff, Mail, KeyRound, User, Loader2, AlertCircle, Rocket, Handshake, MessageCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 const FoundrLogo = () => (
     <div className="inline-flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center shadow-lg shadow-violet-500/30">
+        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
             <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M12 2C12 2 8 6 8 12H16C16 6 12 2 12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M8 12L6 17H18L16 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10 17V20M14 17V20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="12" cy="9" r="1.5" fill="currentColor" />
             </svg>
         </div>
-        <span className="text-4xl font-bold gradient-text">Foundr</span>
+        <span className="text-4xl font-bold text-white tracking-tight">Foundr</span>
     </div>
 )
 
@@ -379,9 +382,9 @@ export default function LoginPage() {
     const [activeTab, setActiveTab] = useState<'login' | 'register'>('login')
 
     const benefits = [
-        { icon: '🚀', text: 'Publique sua startup e recrute talentos' },
-        { icon: '🤝', text: 'Matching inteligente por habilidades' },
-        { icon: '💬', text: 'Chat em tempo real com seu time' },
+        { Icon: Rocket, text: 'Publique sua startup e recrute talentos' },
+        { Icon: Handshake, text: 'Matching inteligente por habilidades' },
+        { Icon: MessageCircle, text: 'Chat em tempo real com seu time' },
     ]
 
     return (
@@ -444,7 +447,7 @@ export default function LoginPage() {
                                 transition={{ delay: 0.4 + i * 0.1 }}
                                 className="flex items-center gap-3 text-sm text-muted-foreground"
                             >
-                                <span className="text-base">{item.icon}</span>
+                                <item.Icon className="w-4 h-4 text-violet-400 shrink-0" />
                                 <span>{item.text}</span>
                             </motion.div>
                         ))}
