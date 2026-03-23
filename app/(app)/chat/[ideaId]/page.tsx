@@ -3,12 +3,12 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { getInitials, formatRelativeTime } from '@/lib/utils'
 import { MessageWithSender, Profile } from '@/types/database'
-import { Send, Loader2, ArrowLeft, Lock } from 'lucide-react'
+import { Send, Loader2, ArrowLeft, Lock, MessageSquare } from 'lucide-react'
 import Link from 'next/link'
 
 export default function ChatPage() {
@@ -33,11 +33,13 @@ export default function ChatPage() {
             setCurrentUserId(user.id)
 
             // Check access: owner or accepted applicant
-            const { data: ideaData } = await supabase
+            const { data: rawIdea } = await supabase
                 .from('ideas')
                 .select('title, owner_id')
                 .eq('id', ideaId)
                 .single()
+
+            const ideaData = rawIdea as { title: string; owner_id: string } | null
 
             if (!ideaData) { setAccess('denied'); setLoading(false); return }
             setIdea({ title: ideaData.title })
@@ -102,7 +104,8 @@ export default function ChatPage() {
         const content = newMessage.trim()
         setNewMessage('')
 
-        const { error } = await supabase.from('messages').insert({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const { error } = await (supabase.from('messages') as any).insert({
             idea_id: ideaId,
             sender_id: currentUserId,
             content,
@@ -154,8 +157,8 @@ export default function ChatPage() {
                         <ArrowLeft className="w-4 h-4" />
                     </Button>
                 </Link>
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center">
-                    💬
+                <div className="w-9 h-9 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center">
+                    <MessageSquare className="w-4 h-4 text-violet-400" />
                 </div>
                 <div>
                     <h1 className="font-bold text-sm leading-none">{idea?.title}</h1>
@@ -167,7 +170,7 @@ export default function ChatPage() {
             <div className="flex-1 overflow-y-auto space-y-4 pr-1">
                 {messages.length === 0 && (
                     <div className="text-center py-12 text-muted-foreground">
-                        <p className="text-4xl mb-3">👋</p>
+                        <MessageSquare className="w-10 h-10 mx-auto mb-3 opacity-30" />
                         <p className="text-sm">Seja o primeiro a enviar uma mensagem!</p>
                     </div>
                 )}
@@ -228,8 +231,8 @@ export default function ChatPage() {
                         {sending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                     </Button>
                 </div>
-                <p className="text-xs text-muted-foreground mt-2 text-center">
-                    🔒 Chat privado — apenas membros aceitos
+                <p className="text-xs text-muted-foreground mt-2 text-center flex items-center justify-center gap-1.5">
+                    <Lock className="w-3 h-3" /> Chat privado — apenas membros aceitos
                 </p>
             </div>
         </div>
